@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/misc/colors.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
+import 'package:travel_app/widgets/app_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +11,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  var images = {
+    "balloning.png": "Balloning",
+    "hiking.png": "Hiking",
+    "kayaking.png": "Kayaking",
+    "snorkling.png": "Snorkling",
+  };
+
   @override
   Widget build(BuildContext context) {
     TabController _tabController = TabController(length: 3, vsync: this);
@@ -85,10 +93,89 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  Text("1st View"),
+                  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        margin: const EdgeInsets.only(right: 15, top: 15),
+                        width: 200,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                          image: DecorationImage(
+                              image: AssetImage("img/mountain.jpeg"),
+                              fit: BoxFit.cover),
+                        ),
+                      );
+                    },
+                  ),
                   Text("2nd View"),
                   Text("3rd View"),
                 ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppLargeText(
+                    text: "Explore more",
+                    size: 22,
+                  ),
+                  AppText(
+                    text: "See all",
+                    color: AppColors.textColor1,
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 120,
+              width: double.maxFinite,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  "img/${images.keys.elementAt(index)}"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          child: AppText(
+                            text: images.values.elementAt(index),
+                            color: AppColors.textColor2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             )
           ],
