@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:travel_app/misc/colors.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
 import 'package:travel_app/widgets/app_text.dart';
@@ -17,6 +16,12 @@ class _WelcomePageState extends State<WelcomePage> {
     "welcome-one.png",
     "welcome-two.png",
     "welcome-three.png",
+  ];
+
+  List text = [
+    "Experience the awe-inspiring beauty of towering mountains, from the Alps to the Himalayas, on our travel app's first three sliders.",
+    "Escape to alpine serenity, breathe in crisp mountain air, and witness panoramic views on our travel app's home page featuring majestic peaks.",
+    "Conquer iconic summits and fuel your sense of adventure with our travel app's first three sliders showcasing the world's most breathtaking mountains.",
   ];
 
   @override
@@ -55,7 +60,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       AppLargeText(
                         text: "Trips",
                       ),
-                      AppText(
+                      const AppText(
                         text: "Mountain",
                         size: 30,
                       ),
@@ -65,8 +70,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Container(
                         width: 230,
                         child: AppText(
-                          text:
-                              "Mountain hikes give you an incredible sense of freedom along with endurance tests",
+                          text: text[index],
                           color: AppColors.mainTextColor,
                           size: 14,
                         ),

@@ -5,7 +5,7 @@ class AppText extends StatelessWidget {
   final String text;
   final Color color;
 
-  AppText({
+  const AppText({
     super.key,
     this.size = 16,
     required this.text,
