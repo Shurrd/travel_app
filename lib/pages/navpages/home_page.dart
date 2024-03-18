@@ -105,13 +105,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                           image: DecorationImage(
-                              image: AssetImage("img/mountain.jpeg"),
-                              fit: BoxFit.cover),
+                            image: AssetImage("img/mountain.jpeg"),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       );
                     },
                   ),
-                  Text("2nd View"),
+                  ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.only(right: 15, top: 15),
+                          width: 200,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: AssetImage("img/welcome-three.png"),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      }),
                   Text("3rd View"),
                 ],
               ),
