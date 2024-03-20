@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/cubit/app_cubit_states.dart';
 import 'package:travel_app/cubit/app_cubits.dart';
+import 'package:travel_app/pages/detail_page.dart';
 import 'package:travel_app/pages/home_page.dart';
 import 'package:travel_app/pages/welcome_page.dart';
 
@@ -25,6 +26,9 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
             return Center(
               child: CircularProgressIndicator(),
             );
+          }
+          if (state is DetailState) {
+            return DetailPage();
           }
           if (state is LoadedState) {
             return HomePage();

@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         body: BlocBuilder<AppCubits, CubitStates>(
           builder: (context, state) {
             if (state is LoadedState) {
-              var info = state.places;
+              var data = state.places;
               return Padding(
                 padding: const EdgeInsets.only(
                   // right: 20,
@@ -102,20 +102,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         children: [
                           ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: info.length,
+                            itemCount: data.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                margin:
-                                    const EdgeInsets.only(right: 15, top: 15),
-                                width: 200,
-                                height: 300,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        "http://mark.bslmeiyu.com/uploads/${info[index].img}"),
-                                    fit: BoxFit.cover,
+                              return GestureDetector(
+                                onTap: () {
+                                  BlocProvider.of<AppCubits>(context)
+                                      .detailPage(data[index]);
+                                },
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.only(right: 15, top: 15),
+                                  width: 200,
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          "http://mark.bslmeiyu.com/uploads/${data[index].img}"),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               );
@@ -239,15 +245,15 @@ class CirclePainter extends BoxPainter {
     Offset offset,
     ImageConfiguration configuration,
   ) {
-    Paint _paint = Paint();
-    _paint.color = color;
-    _paint.isAntiAlias = true;
+    Paint paint = Paint();
+    paint.color = color;
+    paint.isAntiAlias = true;
 
     final Offset circleOffset = Offset(
       configuration.size!.width / 2 - radius / 2,
       configuration.size!.height - radius,
     );
 
-    canvas.drawCircle(offset + circleOffset, radius, _paint);
+    canvas.drawCircle(offset + circleOffset, radius, paint);
   }
 }
