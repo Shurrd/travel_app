@@ -1,6 +1,6 @@
 # travel_app
 
-A new Flutter project.
+Travel App.
 
 ## Getting Started
 
