@@ -2,7 +2,7 @@
 
 Travel App.
 
-## Getting Started
+## Get Started
 
 This project is a starting point for a Flutter application.
 
